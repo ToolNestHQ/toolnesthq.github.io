@@ -44,18 +44,18 @@
         @keyframes wave2 { 0% { transform: translate(0, 0) scale(1.1); } 100% { transform: translate(-80px, -60px) scale(0.9); } }
 
         .tools-grid {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; width: 100%; max-width: 1200px; padding: 40px 20px; box-sizing: border-box; position: relative; z-index: 2;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; width: 100%; max-width: 1300px; padding: 60px 20px; box-sizing: border-box; position: relative; z-index: 2;
         }
 
         .glass-card {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(35px); -webkit-backdrop-filter: blur(35px); border-radius: 28px; padding: 45px 30px; text-align: center; text-decoration: none; color: inherit; flex: 1; min-width: 260px; max-width: 280px; box-sizing: border-box; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(35px); -webkit-backdrop-filter: blur(35px); border-radius: 28px; padding: 40px 25px; text-align: center; text-decoration: none; color: inherit; flex: 1; min-width: 250px; max-width: 280px; box-sizing: border-box; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .glass-card:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.06); box-shadow: 0 50px 120px rgba(0, 0, 0, 0.6); }
-        .card-icon { font-size: 55px; color: var(--text-pure); margin-bottom: 22px; opacity: 0.95; transition: transform 0.4s ease; }
+        .card-icon { font-size: 50px; color: var(--text-pure); margin-bottom: 20px; opacity: 0.95; transition: transform 0.4s ease; }
         .glass-card:hover .card-icon { transform: scale(1.08); }
-        .title-ar { margin: 0; font-size: 22px; font-weight: 700; color: var(--text-pure); line-height: 1.2; }
-        .title-en { margin: 6px 0 16px 0; font-size: 16px; font-weight: 600; color: var(--text-pure); direction: ltr; display: block; opacity: 0.8; }
+        .title-ar { margin: 0; font-size: 20px; font-weight: 700; color: var(--text-pure); line-height: 1.2; }
+        .title-en { margin: 6px 0 14px 0; font-size: 15px; font-weight: 600; color: var(--text-pure); direction: ltr; display: block; opacity: 0.8; }
         .glass-card p { color: var(--text-dim); margin: 0; font-size: 13px; line-height: 1.6; }
     </style>
 </head>
@@ -68,7 +68,7 @@
 
     <div class="tools-grid">
         
-        <!-- الكرت الأول: صانع الباركود -->
+        <!-- كرت 1: صانع الباركود -->
         <a href="qr.html" class="glass-card">
             <div class="card-icon"><i class="fa-solid fa-qrcode"></i></div>
             <span class="title-ar">صانع الباركود</span>
@@ -76,7 +76,7 @@
             <p>أنشئ رموز QR مخصصة لروابطك ونصوصك بسهولة وبأعلى دقة في صفحة مستقلة</p>
         </a>
 
-        <!-- الكرت الثاني: حاسبة العمر -->
+        <!-- كرت 2: حاسبة العمر -->
         <a href="age.html" class="glass-card">
             <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
             <span class="title-ar">حاسبة العمر</span>
@@ -84,7 +84,7 @@
             <p>احسب عمرك بالتفصيل بالسنوات، الأشهر، والأيام بلمحة عين في صفحة مستقلة</p>
         </a>
 
-        <!-- الكرت الثالث: مولد كود الحماية -->
+        <!-- كرت 3: كود الحماية -->
         <a href="password.html" class="glass-card">
             <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
             <span class="title-ar">كود الحماية المطور</span>
@@ -92,7 +92,7 @@
             <p>وَلِّد رموزاً مشفرة وقوية وافحص مستوى الأمان لحساباتك في صفحة مستقلة</p>
         </a>
 
-        <!-- الكرت الرابع الجديد: محول الوحدات والعملات الذكي -->
+        <!-- كرت 4: المحول الذكي -->
         <a href="converter.html" class="glass-card">
             <div class="card-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
             <span class="title-ar">المحوّل الذكي</span>
@@ -100,10 +100,17 @@
             <p>حوّل قيم العملات والمسافات ودرجات الحرارة فوراً بدقة عالية في صفحة مستقلة</p>
         </a>
 
+        <!-- كرت 5 الجديد: عداد التنازلي الذكي -->
+        <a href="countdown.html" class="glass-card">
+            <div class="card-icon"><i class="fa-regular fa-clock"></i></div>
+            <span class="title-ar">الوقت التنازلي</span>
+            <span class="title-en">(Event Countdown)</span>
+            <p>احسب الوقت المتبقي لمناسباتك واختباراتك بالثواني والدقائق في صفحة مستقلة</p>
+        </a>
+
     </div>
 
 </body>
 </html>
-
 
 
