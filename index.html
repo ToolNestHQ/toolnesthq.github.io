@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolNestHQ</title>
+    <title>ToolNestHQ - لوحة الأدوات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -16,18 +16,18 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #060813; /* أساس داكن جداً */
+            background-color: #060813; /* أساس داكن جداً سينمائي */
             color: var(--text-pure);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
-        /* --- تأثير أمواج الألوان المتحركة الفخمة والناعمة في الخلفية --- */
+        /* --- تأثير أمواج الألوان المتحركة الفخمة في الخلفية --- */
         .color-bg-glow {
             position: absolute;
             top: 0;
@@ -36,11 +36,10 @@
             height: 100%;
             z-index: 1;
             overflow: hidden;
-            filter: blur(120px); /* تنعيم الألوان عشان تطلع مثل الضباب */
-            opacity: 0.4; /* هادئة وغير مزعجة للعين */
+            filter: blur(120px);
+            opacity: 0.4;
         }
 
-        /* الكتلة الملونة الأولى (أزرق نيوني فخم) */
         .color-blob-1 {
             position: absolute;
             width: 500px;
@@ -51,7 +50,6 @@
             animation: wave1 20s infinite alternate ease-in-out;
         }
 
-        /* الكتلة الملونة الثانية (بنفسجي غامق ملكي) */
         .color-blob-2 {
             position: absolute;
             width: 600px;
@@ -62,7 +60,6 @@
             animation: wave2 25s infinite alternate ease-in-out;
         }
 
-        /* حركة الأمواج الناعمة */
         @keyframes wave1 {
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(100px, 50px) scale(1.2); }
@@ -73,65 +70,74 @@
             100% { transform: translate(-80px, -60px) scale(0.9); }
         }
 
-        .glass-container {
-            width: 100%;
+        /* حاوية الأدوات تجمع الكروت جنب بعض وتتجاوب مع الجوال */
+        .tools-grid {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            gap: 25px;
+            width: 100%;
+            max-width: 900px;
+            padding: 40px 20px;
             box-sizing: border-box;
             position: relative;
-            z-index: 2; /* فوق الألوان */
+            z-index: 2;
         }
 
-        /* كرت الزجاج الشفاف اللي يعكس الألوان وراه */
+        /* كروت الزجاج الشفاف الفخمة الموحدة */
         .glass-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(35px); /* ضباب قوي يدمج الألوان وراه بشكل ساحر */
+            backdrop-filter: blur(35px);
             -webkit-backdrop-filter: blur(35px);
             border-radius: 28px;
-            padding: 50px 30px;
+            padding: 45px 30px;
             text-align: center;
             text-decoration: none;
             color: inherit;
-            display: block;
-            max-width: 380px;
-            width: 100%;
+            flex: 1;
+            min-width: 280px;
+            max-width: 360px;
             box-sizing: border-box;
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .glass-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             border-color: rgba(255, 255, 255, 0.18);
             background: rgba(255, 255, 255, 0.06);
             box-shadow: 0 50px 120px rgba(0, 0, 0, 0.6);
         }
 
         .card-icon {
-            font-size: 65px;
+            font-size: 55px;
             color: var(--text-pure);
-            margin-bottom: 25px;
+            margin-bottom: 22px;
             opacity: 0.95;
+            transition: transform 0.4s ease;
+        }
+
+        .glass-card:hover .card-icon {
+            transform: scale(1.08);
         }
 
         .title-ar {
             margin: 0;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--text-pure);
             line-height: 1.2;
         }
 
         .title-en {
-            margin: 8px 0 20px 0;
-            font-size: 22px;
+            margin: 6px 0 16px 0;
+            font-size: 18px;
             font-weight: 600;
             color: var(--text-pure);
             direction: ltr;
             display: block;
+            opacity: 0.8;
         }
 
         .glass-card p {
@@ -144,22 +150,31 @@
 </head>
 <body>
 
-    <!-- الألوان المائعة والمتحركة في الخلفية -->
     <div class="color-bg-glow">
         <div class="color-blob-1"></div>
         <div class="color-blob-2"></div>
     </div>
 
-    <div class="glass-container">
+    <div class="tools-grid">
+        
         <a href="qr.html" class="glass-card">
             <div class="card-icon"><i class="fa-solid fa-qrcode"></i></div>
             <span class="title-ar">صانع الباركود</span>
             <span class="title-en">(QR Code)</span>
             <p>أنشئ رموز QR مخصصة لروابطك ونصوصك بسهولة وبأعلى دقة</p>
         </a>
+
+        <a href="age.html" class="glass-card">
+            <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+            <span class="title-ar">حاسبة العمر</span>
+            <span class="title-en">(Age Calculator)</span>
+            <p>احسب عمرك بالتفصيل بالسنوات، الأشهر، والأيام بلمحة عين</p>
+        </a>
+
     </div>
 
 </body>
 </html>
+
 
 
