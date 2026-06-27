@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد رموز QR مجاني - ToolNestHQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* شريط التنقل العلوي للعودة للرئيسية */
+        .navbar {
+            background-color: var(--bg-card);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #334155;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* تقسيم الصفحة لاستيعاب الأداة والإعلانات والسيو */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px; /* مساحة للأداة ومساحة جانبية للإعلان */
+            gap: 30px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .ad-sidebar { display: none; } /* إخفاء الإعلان الجانبي في الجوال */
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* صندوق الأداة الفعلي */
+        .tool-box {
+            background-color: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: 24px;
+            border: 1px solid #334155;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .tool-box h1 {
+            margin-top: 0;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .tool-box p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .tool-input {
+            width: 100%;
+            padding: 14px 18px;
+            background-color: var(--bg-main);
+            border: 2px solid #334155;
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .tool-input:focus {
+            border-color: var(--accent);
+        }
+
+        .primary-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .primary-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* منطقة الـ QR والتحميل */
+        #qrcode-output {
+            margin: 25px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        #qrcode-output img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .download-btn {
+            background-color: #22c55e;
+            margin-top: 10px;
+        }
+        .download-btn:hover {
+            background-color: #16a34a;
+        }
+
+        /* مساحة مجهزة لإعلانات أدسينس مستقبلاً */
+        .ad-space {
+            background-color: rgba(51, 65, 85, 0.3);
+            border: 2px dashed #334155;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .ad-top {
+            width: 100%;
+            height: 90px;
+            margin-bottom: 20px;
+        }
+
+        .ad-sidebar {
+            height: 600px;
+            position: sticky;
+            top: 30px;
+        }
+
+        /* قسم نصوص السيو (SEO) لرفع الترتيب بجوجل */
+        .seo-section {
+            background-color: rgba(30, 41, 59, 0.5);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #334155;
+        }
+
+        .seo-section h2 {
+            font-size: 20px;
+            margin-top: 0;
+            color: var(--text-main);
+        }
+
+        .seo-section p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid #1e293b;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo"><i class="fa-solid fa-cubes"></i> ToolNestHQ</a>
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> العودة للرئيسية</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- المحتوى الرئيسي والأداة -->
+        <div class="main-content">
+            
+            <!-- مساحة إعلانية علوية مجهزة لأدسينس -->
+            <div class="ad-space ad-top">مساحة إعلانية مجهزة (جوجل أدسينس مستقبلاً)</div>
+
+            <div class="tool-box">
+                <h1><i class="fa-solid fa-qrcode" style="color: var(--accent);"></i> صانع الباركود (QR Code)</h1>
+                <p>أنشئ رمز باركود مخصص لروابطك ونصوصك مجاناً وبأعلى جودة لتحميلها مباشرة.</p>
+                
+                <div class="input-group">
+                    <label for="qrText">أدخل الرابط أو النص المراد تحويله لباركود:</label>
+                    <input type="text" id="qrText" class="tool-input" placeholder="https://example.com أو اكتب هنا...">
+                </div>
+
+                <button class="primary-btn" id="generateBtn">توليد رمز QR الفوري</button>
+
+                <div id="qrResult" style="display: none;">
+                    <div id="qrcode-output"></div>
+                    <button class="primary-btn download-btn" id="downloadBtn"><i class="fa-solid fa-download"></i> تحميل صورة الـ QR</button>
+                </div>
+            </div>
+
+            <!-- قسم نصي للسيو لضمان ظهور الصفحة في بحث جوجل -->
+            <div class="seo-section">
+                <h2>لماذا تستخدم مولد رموز QR من ToolNestHQ؟</h2>
+                <p>موقعنا يوفر لك أداة توليد باركود سريعة ومجانية تماماً بدون الحاجة للتسجيل. يمكنك استخدام رموز QR لتسهيل وصول العملاء لموقعك الإلكتروني، حسابات التواصل الاجتماعي، أو حتى لمشاركة نصوص وشبكات الواي فاي بكل سهولة وأمان.</p>
+            </div>
+
+        </div>
+
+        <!-- مساحة إعلانية جانبية (تظهر بالكمبيوتر والتابلت) وتضاعف الأرباح -->
+        <div class="ad-sidebar ad-space">مساحة إعلانية عمودية (أدسينس مستقبلاً)</div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 ToolNestHQ. جميع الحقوق محفوظة.
+    </footer>
+
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const qrText = document.getElementById('qrText');
+        const qrResult = document.getElementById('qrResult');
+        const qrcodeOutput = document.getElementById('qrcode-output');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        let qrCodeInstance = null;
+
+        generateBtn.addEventListener('click', () => {
+            const textValue = qrText.value.trim();
+            if(!textValue) {
+                alert('الرجاء كتابة نص أو رابط أولاً!');
+                return;
+            }
+
+            qrcodeOutput.innerHTML = '';
+            qrResult.style.display = 'block';
+
+            qrCodeInstance = new QRCode(qrcodeOutput, {
+                text: textValue,
+                width: 200,
+                height: 200,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            const img = qrcodeOutput.querySelector('img');
+            if(img) {
+                const link = document.createElement('a');
+                link.href = img.src;
+                link.download = 'ToolNestHQ-QR.png';
+                link.click();
+            } else {
+                alert('حدث خطأ أثناء محاولة التحميل، يرجى المحاولة مرة أخرى.');
+            }
+        });
+    </script>
+</body>
+</html>
