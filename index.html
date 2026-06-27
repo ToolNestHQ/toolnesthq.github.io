@@ -3,118 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolNestHQ - أدوات رقمية مجانية</title>
+    <title>ToolNestHQ - الأسطورية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* تعريف الألوان والتأثيرات */
         :root {
-            --bg-main: #0f172a;
-            --bg-card: #1e293b;
-            --accent: #6366f1;
-            --accent-hover: #4f46e5;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.05); /* خلفية الكرت نصف الشفافة */
+            --glass-border: rgba(255, 255, 255, 0.1); /* حدود الكرت الشفافة */
+            --text-main: #ffffff; /* لون النص الرئيسي (أبيض) */
+            --text-gold: #ffd700; /* لون التمييز الأسطوري (ذهبي) */
+            --accent-glow: rgba(99, 102, 241, 0.5); /* وهج الأكوانت */
+            --body-bg-gradient: linear-gradient(135deg, #0f172a, #1e293b, #030712); /* تدرج خلفية الصفحة */
         }
 
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-main);
+            background: var(--body-bg-gradient); /* تدرج الألوان الخلفية المظلمة والفخمة */
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite; /* حركة الخلفية */
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden; /* منع التمرير الأفقي */
         }
 
-        .header {
+        /* تحريك الخلفية المتدرجة */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* تصميم الكسوة الشفافة للكونتينر */
+        .glass-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            backdrop-filter: blur(10px); /* تأثير الضبابية على الخلفية خلف الكرت */
+            position: relative;
+        }
+
+        /* حركة العائمة للكرت الرئيسي */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* كرت الـ QR الزجاجي الأسطوري */
+        .glass-card {
+            background: var(--glass-bg); /* خلفية شفافة */
+            border: 1px solid var(--glass-border); /* حدود رقيقة جداً */
+            backdrop-filter: blur(25px); /* تأثير الضبابية الشفاف القوي */
+            -webkit-backdrop-filter: blur(25px); /* لدعم سفاري */
+            border-radius: 30px; /* زوايا منحوتة بعناية */
+            padding: 60px 40px;
             text-align: center;
-            padding: 60px 20px;
-            background: radial-gradient(circle at top, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
-        }
-
-        .header h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        .header p {
-            color: var(--text-muted);
-            font-size: 18px;
-        }
-
-        .container {
-            max-width: 600px; /* تقليص العرض ليناسب أداة واحدة بشكل أنيق */
-            margin: 0 auto;
-            padding: 0 20px 60px;
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        .card {
-            background-color: var(--bg-card);
-            border: 1px solid #334155;
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
             display: block;
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* ظل خارجي خفيف */
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* تأثير انتقالي سلس جداً */
+            animation: floating 6s ease-in-out infinite; /* إضافة حركة الطفو */
+            position: relative;
+            overflow: hidden; /* منع خروج التوهج */
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+        /* تأثيرات اللمعان الداخلية عند التمرير */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.5s;
         }
 
+        /* تأثيرات التمرير على الكرت */
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02); /* رفع الكرت وتكبيره قليلاً */
+            border-color: rgba(255, 255, 255, 0.3); /* توضيح الحدود */
+            box-shadow: 0 15px 45px 0 rgba(99, 102, 241, 0.6); /* زيادة الظل والوهج */
+        }
+
+        .glass-card:hover::before {
+            left: 100%; /* تحريك اللمعان من اليسار لليمين */
+        }
+
+        /* تصميم الأيقونة الأسطورية الذهبية */
         .card-icon {
-            font-size: 50px;
-            color: var(--accent);
-            margin-bottom: 20px;
+            font-size: 70px;
+            color: var(--text-gold); /* لون ذهبي */
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7)); /* توهج ذهبي حول الأيقونة */
+            transition: all 0.5s ease;
         }
 
-        .card h3 {
-            margin: 0 0 12px 0;
-            font-size: 22px;
+        /* تحريك الأيقونة عند التمرير */
+        .glass-card:hover .card-icon {
+            transform: scale(1.1) rotate(-5deg); /* تكبير وتدوير بسيط */
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1)); /* زيادة التوهج */
         }
 
-        .card p {
-            color: var(--text-muted);
+        /* تصميم العنوان الأسطوري (ذهبي) */
+        .glass-card h3 {
+            margin: 0 0 15px 0;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-gold); /* استخدام اللون الذهبي */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* توهج ذهبي للنص */
+        }
+
+        /* تصميم النص الوصفي (أبيض) */
+        .glass-card p {
+            color: var(--text-main); /* لون أبيض */
             margin: 0;
-            font-size: 15px;
-            line-height: 1.6;
+            font-size: 17px;
+            line-height: 1.7;
+            opacity: 0.9; /* شفافية بسيطة للنص */
         }
 
+        /* تصميم التذييل النظيف */
         footer {
-            margin-top: auto;
             padding: 30px;
             text-align: center;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 14px;
-            border-top: 1px solid #1e293b;
+            border-top: 1px solid var(--glass-border);
+            backdrop-filter: blur(5px);
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1><i class="fa-solid fa-cubes" style="color: var(--accent);"></i> ToolNestHQ</h1>
-        <p>صندوق أدواتك الذكي والمجاني لإنجاز مهامك اليومية بذكاء وسرعة</p>
-    </div>
-
-    <div class="container">
+    <!-- الكونتينر الزجاجي الذي يحتوي على الكرت -->
+    <div class="glass-container">
         
-        <!-- كرت أداة الباركود المربوط بالصفحة المستقلة المخصصة لها فقط -->
-        <a href="qr.html" class="card">
+        <!-- كرت الـ QR الزجاجي الأسطوري -->
+        <a href="qr.html" class="glass-card">
+            <!-- الأيقونة الذهبية -->
             <div class="card-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <!-- العنوان الذهبي -->
             <h3>صانع الباركود (QR Code)</h3>
-            <p>أنشئ رموز QR مخصصة لروابطك ونصوصك بسهولة وبأعلى جودة</p>
+            <!-- النص الأبيض -->
+            <p>أنشئ رموز QR مخصصة لروابطك ونصوصك بسهولة ودقة أسطورية</p>
         </a>
 
     </div>
 
+    <!-- التذييل -->
     <footer>
         &copy; 2026 ToolNestHQ. جميع الحقوق محفوظة.
     </footer>
