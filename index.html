@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --text-pure: #ffffff;
-            --text-dim: rgba(255, 255, 255, 0.6);
-            --body-bg: #0b0f19;
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --body-bg: #050811; /* أسود أعمق عشان تبرز الخطوط */
         }
 
         body {
@@ -24,7 +24,47 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- تأثير الخطوط المتحركة الفخمة في الخلفية --- */
+        .bg-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px; /* مقاس المربعات */
+            background-position: center;
+            animation: moveGrid 20s linear infinite; /* حركة مستمرة ناعمة */
+        }
+
+        /* أنيميشن تحريك شبكة الخطوط ببطء */
+        @keyframes moveGrid {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            100% {
+                transform: translateY(50px) translateX(50px);
+            }
+        }
+
+        /* تأثير إضاءة متوهجة ناعمة خلف الكرت تدور ببطء */
+        .bg-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            pointer-events: none;
         }
 
         .glass-container {
@@ -34,37 +74,46 @@
             align-items: center;
             padding: 20px;
             box-sizing: border-box;
+            position: relative;
+            z-index: 3; /* فوق الخطوط والخلفية */
         }
 
+        /* كرت الزجاج الشفاف الضبابي الفخم المستقل */
         .glass-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-radius: 24px;
-            padding: 45px 30px;
+            backdrop-filter: blur(30px); /* زيادة الضباب عشان يعزل الخطوط وراه */
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 28px;
+            padding: 50px 30px;
             text-align: center;
             text-decoration: none;
             color: inherit;
             display: block;
-            max-width: 400px;
+            max-width: 380px;
             width: 100%;
             box-sizing: border-box;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.6);
         }
 
         .card-icon {
-            font-size: 60px;
+            font-size: 65px;
             color: var(--text-pure);
             margin-bottom: 25px;
             opacity: 0.95;
+            transition: transform 0.4s ease;
+        }
+
+        .glass-card:hover .card-icon {
+            transform: scale(1.05); /* حركة خفيفة للأيقونة عند اللمس */
         }
 
         .title-ar {
@@ -73,29 +122,35 @@
             font-weight: 700;
             color: var(--text-pure);
             line-height: 1.2;
+            letter-spacing: 0.5px;
         }
 
         .title-en {
             margin: 8px 0 20px 0;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             color: var(--text-pure);
             direction: ltr;
             display: block;
+            opacity: 0.9;
         }
 
         .glass-card p {
             color: var(--text-dim);
             margin: 0;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
+    <!-- عناصر الخلفية المتحركة والمضيئة -->
+    <div class="bg-lines"></div>
+    <div class="bg-glow"></div>
+
     <div class="glass-container">
-        <!-- كرت أداة الباركود فقط لحالها -->
+        <!-- كرت أداة الباركود المستقل -->
         <a href="qr.html" class="glass-card">
             <div class="card-icon"><i class="fa-solid fa-qrcode"></i></div>
             <span class="title-ar">صانع الباركود</span>
@@ -106,6 +161,7 @@
 
 </body>
 </html>
+ح
 
 
 
