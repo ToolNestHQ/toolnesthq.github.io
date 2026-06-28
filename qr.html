@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صانع رموز QR Code | ToolnestHQ</title>
+    <!-- خطوط قوقل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- مكتبة خفيفة جداً لتوليد الباركود بسرعة البرق -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #070a13;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: #ffffff;
+            --text-muted: #64748b;
+            --accent-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --hover-glow: rgba(124, 58, 237, 0.25);
+            --input-bg: rgba(0, 0, 0, 0.2);
+            --font-ar: 'Cairo', sans-serif;
+            --font-en: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: var(--font-ar);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.06), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.06), transparent 30%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        html[lang="en"] body {
+            font-family: var(--font-en);
+        }
+
+        nav {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover { color: var(--text-main); }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px var(--hover-glow);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            padding: 0 1.5rem 4rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .tool-box {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* حقل الإدخال */
+        .input-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* أزرار الإجراءات */
+        .btn-primary {
+            width: 100%;
+            padding: 1.1rem;
+            border: none;
+            border-radius: 16px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 10px 20px var(--hover-glow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px var(--hover-glow);
+        }
+
+        /* مربع عرض الباركود */
+        .qr-display {
+            width: 250px;
+            height: 250px;
+            background: #ffffff;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            padding: 15px;
+            display: none; /* مخفي في البداية */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 4px solid rgba(255,255,255,0.1);
+        }
+
+        .qr-display img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* زر التحميل (يظهر بعد التوليد) */
+        .btn-download {
+            width: 100%;
+            padding: 1.1rem;
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            border-radius: 16px;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-download:hover {
+            background: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .ad-slot {
+            width: 100%;
+            min-height: 90px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px dashed rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            font-family: var(--font-en);
+        }
+
+        @media (max-width: 480px) {
+            .tool-box { padding: 2rem 1.2rem; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn" id="backBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>الرئيسية</span>
+        </a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span id="langText">English</span>
+        </button>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1 id="toolTitle">صانع الرموز QR</h1>
+            <p id="toolDesc">حول أي رابط أو نص إلى باركود عالي الدقة جاهز للمسح والطباعة</p>
+        </header>
+
+        <div class="ad-slot">Advertisement Space (Top Banner)</div>
+
+        <div class="tool-box">
+            
+            <div class="input-group">
+                <label id="inputLabel">أدخل الرابط (URL) أو النص هنا:</label>
+                <input type="text" id="qrInput" placeholder="https://example.com" autocomplete="off">
+            </div>
+
+            <button class="btn-primary" onclick="generateQR()" id="genBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                <span id="genBtnText">توليد الباركود</span>
+            </button>
+
+            <!-- حاوية عرض الباركود -->
+            <div class="qr-display" id="qrcode"></div>
+
+            <!-- زر التحميل -->
+            <button class="btn-download" onclick="downloadQR()" id="downloadBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span id="downBtnText">تحميل الصورة (PNG)</span>
+            </button>
+
+        </div>
+
+        <div class="ad-slot">Advertisement Space (Bottom Banner)</div>
+    </div>
+
+    <script>
+        const translations = {
+            ar: {
+                langBtn: "English",
+                backBtn: "الرئيسية",
+                title: "صانع رموز QR Code | ToolnestHQ",
+                toolTitle: "صانع الرموز QR",
+                toolDesc: "حول أي رابط أو نص إلى باركود عالي الدقة جاهز للمسح والطباعة",
+                inputLabel: "أدخل الرابط (URL) أو النص هنا:",
+                placeholder: "https://example.com أو أي نص تريده...",
+                genBtnText: "توليد الباركود",
+                downBtnText: "تحميل الصورة (PNG)",
+                alertEmpty: "الرجاء إدخال رابط أو نص أولاً!"
+            },
+            en: {
+                langBtn: "العربية",
+                backBtn: "Home",
+                title: "QR Code Generator | ToolnestHQ",
+                toolTitle: "QR Code Maker",
+                toolDesc: "Convert any URL or text into a high-res, scannable QR code instantly",
+                inputLabel: "Enter URL or Text here:",
+                placeholder: "https://example.com or any text...",
+                genBtnText: "Generate QR Code",
+                downBtnText: "Download Image (PNG)",
+                alertEmpty: "Please enter a URL or text first!"
+            }
+        };
+
+        let currentLang = 'ar';
+        let qrcode = null; // متغير لحفظ حالة الباركود
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+            document.title = translations[currentLang].title;
+            document.getElementById('langText').textContent = translations[currentLang].langBtn;
+            document.getElementById('backBtn').querySelector('span').textContent = translations[currentLang].backBtn;
+            document.getElementById('toolTitle').textContent = translations[currentLang].toolTitle;
+            document.getElementById('toolDesc').textContent = translations[currentLang].toolDesc;
+            document.getElementById('inputLabel').textContent = translations[currentLang].inputLabel;
+            document.getElementById('qrInput').placeholder = translations[currentLang].placeholder;
+            document.getElementById('genBtnText').textContent = translations[currentLang].genBtnText;
+            document.getElementById('downBtnText').textContent = translations[currentLang].downBtnText;
+
+            const svgNav = document.getElementById('backBtn').querySelector('svg');
+            if(currentLang === 'en') {
+                svgNav.style.transform = 'rotate(0deg)';
+            } else {
+                svgNav.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function generateQR() {
+            const inputValue = document.getElementById('qrInput').value.trim();
+            const qrContainer = document.getElementById('qrcode');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            if (!inputValue) {
+                alert(translations[currentLang].alertEmpty);
+                return;
+            }
+
+            // تنظيف الباركود القديم إن وجد
+            qrContainer.innerHTML = "";
+            
+            // إظهار المربع
+            qrContainer.style.display = "flex";
+
+            // توليد الباركود الجديد
+            qrcode = new QRCode(qrContainer, {
+                text: inputValue,
+                width: 220,
+                height: 220,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H // أعلى دقة تصحيح
+            });
+
+            // إظهار زر التحميل بعد ثانية لضمان اكتمال الرسم
+            setTimeout(() => {
+                downloadBtn.style.display = "flex";
+            }, 300);
+        }
+
+        function downloadQR() {
+            // سحب الصورة من الكانفاس الذي أنشأته المكتبة
+            const canvas = document.querySelector('#qrcode canvas');
+            if(canvas) {
+                const imageURL = canvas.toDataURL("image/png");
+                
+                // إنشاء رابط وهمي للتحميل
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imageURL;
+                downloadLink.download = 'ToolnestHQ_QRCode.png';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
+        }
+    </script>
+</body>
+</html>
