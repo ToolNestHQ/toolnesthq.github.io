@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أدواتي الاحترافية | Premium Tools</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>ToolnestHQ | منصة الأدوات الاحترافية المجانية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
+            --bg-color: #070a13;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.06);
             --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            --hover-glow: rgba(139, 92, 246, 0.3);
+            --text-muted: #64748b;
+            --accent-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --hover-glow: rgba(124, 58, 237, 0.25);
             --font-ar: 'Cairo', sans-serif;
             --font-en: 'Poppins', sans-serif;
         }
@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -35,8 +35,8 @@
             align-items: center;
             font-family: var(--font-ar);
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.06), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.06), transparent 30%);
             background-attachment: fixed;
             overflow-x: hidden;
         }
@@ -45,90 +45,126 @@
             font-family: var(--font-en);
         }
 
+        /* شريط علوي احترافي للهوية واللغة */
         nav {
             width: 100%;
             max-width: 1200px;
             padding: 2rem;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: var(--font-en);
         }
 
         .lang-btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
         }
 
         .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 15px var(--hover-glow);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px var(--hover-glow);
         }
 
+        /* قسم الهيدر والترحيب */
         header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             margin-top: 1rem;
             padding: 0 1rem;
         }
 
         header h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        header h1 span {
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.25rem;
+            max-width: 650px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
+        /* مساحة إعلانية علوية لزيادة الأرباح */
+        .ad-space-top {
+            width: 100%;
+            max-width: 728px;
+            min-height: 90px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px dashed rgba(255, 255, 255, 0.05);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 0.8rem;
+            border-radius: 12px;
+        }
+
+        /* شبكة عرض الأدوات */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             width: 100%;
             max-width: 1200px;
             padding: 0 2rem 4rem 2rem;
         }
 
+        /* كروت الأدوات الزجاجية الفخمة */
         .tool-card {
             background-color: var(--card-bg);
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
+            border-radius: 28px;
+            padding: 2.8rem 2.2rem;
             text-decoration: none;
             color: var(--text-main);
             border: 1px solid var(--card-border);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(20px);
             position: relative;
             overflow: hidden;
         }
 
+        /* تلوين حواف الكرت عند الهوفر بمؤثر مضيء */
         .tool-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 24px;
-            padding: 2px;
+            border-radius: 28px;
+            padding: 1.5px;
             background: var(--accent-gradient);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
@@ -138,149 +174,171 @@
         }
 
         .tool-card:hover {
-            transform: translateY(-8px);
-            background-color: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .tool-card:hover::before {
             opacity: 1;
         }
 
-        .icon-container {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.05);
+        .icon-box {
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
+            margin-bottom: 1.8rem;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
-        .tool-card:hover .icon-container {
+        .tool-card:hover .icon-box {
             background: var(--accent-gradient);
             border-color: transparent;
-            box-shadow: 0 10px 20px var(--hover-glow);
+            box-shadow: 0 12px 24px var(--hover-glow);
+            transform: scale(1.05);
         }
 
-        .icon-container svg {
-            width: 30px;
-            height: 30px;
+        .icon-box svg {
+            width: 32px;
+            height: 32px;
             stroke-width: 1.5;
         }
 
         .tool-title {
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.45rem;
+            font-weight: 700;
             margin-bottom: 0.8rem;
             z-index: 1;
         }
 
         .tool-desc {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.6;
             z-index: 1;
         }
 
+        /* الفوتر أو الحقوق */
+        footer {
+            margin-top: auto;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: var(--font-en);
+        }
+
         @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            .tools-grid { grid-template-columns: 1fr; padding: 0 1rem 2rem 1rem; }
-            nav { justify-content: center; }
+            header h1 { font-size: 2.8rem; }
+            .tools-grid { grid-template-columns: 1fr; padding: 0 1.5rem 2rem 1.5rem; }
+            nav { padding: 1.5rem; }
+            .ad-space-top { width: 90%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
+        <div class="logo">ToolnestHQ</div>
         <button class="lang-btn" onclick="toggleLanguage()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            <span id="langText" data-i18n="langBtn">English</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span id="langText">English</span>
         </button>
     </nav>
 
     <header>
-        <h1 data-i18n="mainTitle">أدواتي الاحترافية</h1>
-        <p data-i18n="mainDesc">مجموعة من الأدوات السريعة والآمنة المصممة بعناية لتسهيل مهامك اليومية ورفع إنتاجيتك.</p>
+        <h1 id="mainTitle">عش الأدوات <span>ToolnestHQ</span></h1>
+        <p id="mainDesc">أدوات برمجية ذكية، سريعة، ومجانية 100% مصممة لتسهيل أعمالك اليومية بأعلى دقة وأقل مجهود.</p>
     </header>
+
+    <div class="ad-space-top">
+        <span>Advertisement Space</span>
+    </div>
 
     <main class="tools-grid">
         <a href="age.html" class="tool-card">
-            <div class="icon-container">
+            <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
-            <div class="tool-title" data-i18n="ageTitle">حاسبة العمر الدقيقة</div>
-            <div class="tool-desc" data-i18n="ageDesc">احسب عمرك بتفاصيل دقيقة جداً (بالسنوات، الأشهر، الأيام) واعرف موعد ميلادك القادم.</div>
+            <div class="tool-title" id="ageTitle">حاسبة العمر الدقيقة</div>
+            <div class="tool-desc" id="ageDesc">احسب عمرك بدقة خيالية بالسنوات، الأشهر، الأيام، واعرف موعد يوم ميلادك القادم بالتفصيل.</div>
         </a>
 
         <a href="converter.html" class="tool-card">
-            <div class="icon-container">
+            <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
             </div>
-            <div class="tool-title" data-i18n="converterTitle">محول الوحدات الشامل</div>
-            <div class="tool-desc" data-i18n="converterDesc">أداة سريعة للتحويل بين مختلف القياسات والأوزان والأطوال بدقة متناهية.</div>
+            <div class="tool-title" id="converterTitle">محول الوحدات الشامل</div>
+            <div class="tool-desc" id="converterDesc">تحويل فوري فائق السرعة والدقة بين الأوزان، الأطوال، درجات الحرارة، والمساحات في مكان واحد.</div>
         </a>
 
         <a href="countdown.html" class="tool-card">
-            <div class="icon-container">
+            <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3M12 2a10 10 0 100 20 10 10 0 000-20z"></path></svg>
             </div>
-            <div class="tool-title" data-i18n="timerTitle">المؤقت التنازلي</div>
-            <div class="tool-desc" data-i18n="timerDesc">أنشئ مؤقتات تنازلية لمناسباتك الهامة أو مهام عملك باحترافية.</div>
+            <div class="tool-title" id="timerTitle">المؤقت التنازلي الاحترافي</div>
+            <div class="tool-desc" id="timerDesc">تابع مناسباتك ومواعيدك النهائية بدقة متناهية مع نظام تنبيهات بصرية مذهل وعصري.</div>
         </a>
 
         <a href="password.html" class="tool-card">
-            <div class="icon-container">
+            <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
             </div>
-            <div class="tool-title" data-i18n="passTitle">مولد كلمات المرور</div>
-            <div class="tool-desc" data-i18n="passDesc">صمم كلمات مرور معقدة وآمنة جداً لحماية حساباتك بثوانٍ معدودة.</div>
+            <div class="tool-title" id="passTitle">مولد كلمات المرور الآمنة</div>
+            <div class="tool-desc" id="passDesc">توليد كلمات سر مشفرة وفائقة الصعوبة لحماية حساباتك الرقمية بلمحة بصر مع ميزة النسخ السريع.</div>
         </a>
 
         <a href="qr.html" class="tool-card">
-            <div class="icon-container">
+            <div class="icon-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
             </div>
-            <div class="tool-title" data-i18n="qrTitle">صانع QR Code</div>
-            <div class="tool-desc" data-i18n="qrDesc">حول أي رابط أو نص إلى رمز استجابة سريعة قابل للمسح بتصميم عصري.</div>
+            <div class="tool-title" id="qrTitle">صانع الرموز QR Code</div>
+            <div class="tool-desc" id="qrDesc">حول أي رابط الكتروني أو نص طويل إلى باركود عالي الجودة جاهز للتحميل والمسح المباشر.</div>
         </a>
     </main>
+
+    <footer>
+        &copy; 2026 ToolnestHQ. All rights reserved.
+    </footer>
 
     <script>
         const translations = {
             ar: {
                 langBtn: "English",
-                mainTitle: "أدواتي الاحترافية",
-                mainDesc: "مجموعة من الأدوات السريعة والآمنة المصممة بعناية لتسهيل مهامك اليومية ورفع إنتاجيتك.",
+                title: "ToolnestHQ | منصة الأدوات الاحترافية المجانية",
+                mainTitle: "عش الأدوات <span>ToolnestHQ</span>",
+                mainDesc: "أدوات برمجية ذكية، سريعة، ومجانية 100% مصممة لتسهيل أعمالك اليومية بأعلى دقة وأقل مجهود.",
                 ageTitle: "حاسبة العمر الدقيقة",
-                ageDesc: "احسب عمرك بتفاصيل دقيقة جداً (بالسنوات، الأشهر، الأيام) واعرف موعد ميلادك القادم.",
+                ageDesc: "احسب عمرك بدقة خيالية بالسنوات، الأشهر، الأيام، واعرف موعد يوم ميلادك القادم بالتفصيل.",
                 converterTitle: "محول الوحدات الشامل",
-                converterDesc: "أداة سريعة للتحويل بين مختلف القياسات والأوزان والأطوال بدقة متناهية.",
-                timerTitle: "المؤقت التنازلي",
-                timerDesc: "أنشئ مؤقتات تنازلية لمناسباتك الهامة أو مهام عملك باحترافية.",
-                passTitle: "مولد كلمات المرور",
-                passDesc: "صمم كلمات مرور معقدة وآمنة جداً لحماية حساباتك بثوانٍ معدودة.",
-                qrTitle: "صانع QR Code",
-                qrDesc: "حول أي رابط أو نص إلى رمز استجابة سريعة قابل للمسح بتصميم عصري."
+                converterDesc: "تحويل فوري فائق السرعة والدقة بين الأوزان، الأطوال، درجات الحرارة، والمساحات في مكان واحد.",
+                timerTitle: "المؤقت التنازلي الاحترافي",
+                timerDesc: "تابع مناسباتك ومواعيدك النهائية بدقة متناهية مع نظام تنبيهات بصرية مذهل وعصري.",
+                passTitle: "مولد كلمات المرور الآمنة",
+                passDesc: "توليد كلمات سر مشفرة وفائقة الصعوبة لحماية حساباتك الرقمية بلمحة بصر مع ميزة النسخ السريع.",
+                qrTitle: "صانع الرموز QR Code",
+                qrDesc: "حول أي رابط الكتروني أو نص طويل إلى باركود عالي الجودة جاهز للتحميل والمسح المباشر."
             },
             en: {
                 langBtn: "العربية",
-                mainTitle: "Premium Tools",
-                mainDesc: "A collection of fast, secure, and carefully crafted tools to streamline your daily tasks and boost productivity.",
+                title: "ToolnestHQ | Free Premium Web Tools Hub",
+                mainTitle: "Welcome to <span>ToolnestHQ</span>",
+                mainDesc: "Smart, lightning-fast, and 100% free web tools designed to streamline your daily workflow with ultimate precision.",
                 ageTitle: "Precise Age Calculator",
-                ageDesc: "Calculate your exact age (years, months, days) and know your next birthday.",
-                converterTitle: "Universal Converter",
-                converterDesc: "A quick tool to convert between various measurements, weights, and lengths with high accuracy.",
-                timerTitle: "Countdown Timer",
-                timerDesc: "Create professional countdown timers for your important events or tasks.",
-                passTitle: "Password Generator",
-                passDesc: "Design highly secure and complex passwords to protect your accounts in seconds.",
-                qrTitle: "QR Code Generator",
-                qrDesc: "Convert any link or text into a scannable QR code with a modern design."
+                ageDesc: "Calculate your exact age in years, months, and days, and discover your upcoming birthday details.",
+                converterTitle: "Universal Unit Converter",
+                converterDesc: "Instant, highly accurate conversion across weights, lengths, temperatures, and areas all in one dashboard.",
+                timerTitle: "Premium Countdown Timer",
+                timerDesc: "Track your major life events or strict deadlines with a beautifully designed visual countdown system.",
+                passTitle: "Secure Password Generator",
+                passDesc: "Generate uncrackable, fully encrypted passwords instantly to safeguard your digital presence with 1-click copy.",
+                qrTitle: "Instant QR Code Generator",
+                qrDesc: "Seamlessly convert any URL or text into a high-quality, instantly scannable QR code ready for download."
             }
         };
 
@@ -289,18 +347,23 @@
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             
-            // تغيير اتجاه ولغة الصفحة
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
 
-            // تحديث النصوص
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    el.textContent = translations[currentLang][key];
-                }
-            });
+            document.title = translations[currentLang].title;
+            document.getElementById('langText').textContent = translations[currentLang].langBtn;
+            document.getElementById('mainTitle').innerHTML = translations[currentLang].mainTitle;
+            document.getElementById('mainDesc').textContent = translations[currentLang].mainDesc;
+            document.getElementById('ageTitle').textContent = translations[currentLang].ageTitle;
+            document.getElementById('ageDesc').textContent = translations[currentLang].ageDesc;
+            document.getElementById('converterTitle').textContent = translations[currentLang].converterTitle;
+            document.getElementById('converterDesc').textContent = translations[currentLang].converterDesc;
+            document.getElementById('timerTitle').textContent = translations[currentLang].timerTitle;
+            document.getElementById('timerDesc').textContent = translations[currentLang].timerDesc;
+            document.getElementById('passTitle').textContent = translations[currentLang].passTitle;
+            document.getElementById('passDesc').textContent = translations[currentLang].passDesc;
+            document.getElementById('qrTitle').textContent = translations[currentLang].qrTitle;
+            document.getElementById('qrDesc').textContent = translations[currentLang].qrDesc;
         }
     </script>
 </body>
