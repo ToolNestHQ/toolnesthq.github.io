@@ -1,22 +1,24 @@
-// Counter Animation
-const counters = document.querySelectorAll('.counter');
+document.addEventListener("DOMContentLoaded", () => {
 
-counters.forEach(counter => {
-  counter.innerText = '0';
+  const counters = document.querySelectorAll(".counter");
 
-  const updateCounter = () => {
-    const target = +counter.getAttribute('data-target');
-    const current = +counter.innerText;
+  counters.forEach(counter => {
+    counter.innerText = "0";
 
-    const increment = target / 200; // سرعة العد
+    const updateCounter = () => {
+      const target = +counter.getAttribute("data-target");
+      const current = +counter.innerText.replace(/,/g, "");
+      const increment = target / 200;
 
-    if (current < target) {
-      counter.innerText = Math.ceil(current + increment);
-      setTimeout(updateCounter, 10);
-    } else {
-      counter.innerText = target;
-    }
-  };
+      if (current < target) {
+        counter.innerText = Math.ceil(current + increment);
+        setTimeout(updateCounter, 10);
+      } else {
+        counter.innerText = target.toLocaleString();
+      }
+    };
 
-  updateCounter();
+    updateCounter();
+  });
+
 });
