@@ -207,3 +207,13 @@ body {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.1);
 }
+.click-ripple {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
