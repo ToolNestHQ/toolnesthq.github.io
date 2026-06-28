@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صانع روابط واتساب المباشرة | ToolnestHQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #070a13;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: #ffffff;
+            --text-muted: #64748b;
+            --accent-gradient: linear-gradient(135deg, #25d366 0%, #128c7e 100%); /* ألوان واتساب */
+            --hover-glow: rgba(37, 211, 102, 0.25);
+            --input-bg: rgba(0, 0, 0, 0.25);
+            --font-ar: 'Cairo', sans-serif;
+            --font-en: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: var(--font-ar);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(37, 211, 102, 0.05), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(18, 140, 126, 0.05), transparent 30%);
+            background-attachment: fixed;
+        }
+
+        html[lang="en"] body { font-family: var(--font-en); }
+
+        nav {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover { color: var(--text-main); }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px var(--hover-glow);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            padding: 0 1.5rem 4rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .tool-box {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-icon input, .input-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .input-with-icon input {
+            padding-inline-start: 4rem; /* مساحة لرمز الدولة */
+            font-family: var(--font-en); /* الأرقام دائماً بالانجليزي */
+            direction: ltr;
+        }
+
+        .country-code {
+            position: absolute;
+            left: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-family: var(--font-en);
+            direction: ltr;
+        }
+        
+        html[dir="ltr"] .country-code { left: 1rem; right: auto; }
+        html[dir="rtl"] .country-code { left: 1rem; right: auto; }
+
+        .input-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: #25d366;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 1.1rem;
+            border: none;
+            border-radius: 16px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 10px 20px var(--hover-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px var(--hover-glow);
+        }
+
+        /* شاشة النتيجة */
+        .result-container {
+            display: none; /* مخفي في البداية */
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--card-border);
+        }
+
+        .link-box {
+            display: flex;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .link-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #3b82f6;
+            padding: 1rem;
+            outline: none;
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            background: rgba(255,255,255,0.05);
+            border: none;
+            border-inline-start: 1px solid var(--card-border);
+            color: #fff;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+        }
+
+        .copy-btn:hover { background: rgba(255,255,255,0.1); }
+
+        .btn-open {
+            background: transparent;
+            border: 1px solid #25d366;
+            color: #25d366;
+        }
+
+        .btn-open:hover {
+            background: rgba(37, 211, 102, 0.1);
+        }
+
+        /* إشعار النسخ */
+        .toast {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(37, 211, 102, 0.9);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: bottom 0.4s ease;
+        }
+
+        .toast.show { bottom: 40px; }
+
+        .ad-slot {
+            width: 100%;
+            min-height: 90px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px dashed rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            font-family: var(--font-en);
+        }
+
+        @media (max-width: 480px) {
+            .tool-box { padding: 2rem 1.2rem; }
+            header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn" id="backBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>الرئيسية</span>
+        </a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span id="langText">English</span>
+        </button>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1 id="toolTitle">رابط واتساب المباشر</h1>
+            <p id="toolDesc">أنشئ رابطاً مباشراً لبدء محادثة واتساب بدون الحاجة لحفظ الرقم في جهات الاتصال</p>
+        </header>
+
+        <div class="ad-slot">Advertisement Space (Top Banner)</div>
+
+        <div class="tool-box">
+            
+            <div class="input-group">
+                <label id="lblPhone">رقم الجوال (مع رمز الدولة):</label>
+                <div class="input-with-icon">
+                    <span class="country-code">+</span>
+                    <input type="tel" id="whatsappPhone" placeholder="966500000000">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label id="lblMessage">رسالة الترحيب الافتراضية (اختياري):</label>
+                <textarea id="whatsappMsg" placeholder="مرحباً، أود الاستفسار عن..."></textarea>
+            </div>
+
+            <button class="btn-primary" onclick="generateLink()" id="btnGenerate">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span id="txtGenerate">توليد الرابط الآن</span>
+            </button>
+
+            <!-- منطقة النتيجة -->
+            <div class="result-container" id="resultArea">
+                <div class="link-box">
+                    <input type="text" id="finalLink" readonly>
+                    <button class="copy-btn" onclick="copyLink()" id="btnCopy">نسخ</button>
+                </div>
+                <a href="#" target="_blank" class="btn-primary btn-open" id="btnOpenLink">
+                    <span id="txtOpen">فتح في واتساب</span>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="ad-slot">Advertisement Space (Bottom Banner)</div>
+    </div>
+
+    <div class="toast" id="toastMsg">تم نسخ الرابط بنجاح!</div>
+
+    <script>
+        const translations = {
+            ar: {
+                langBtn: "English", backBtn: "الرئيسية",
+                title: "رابط واتساب المباشر | ToolnestHQ",
+                toolTitle: "رابط واتساب المباشر",
+                toolDesc: "أنشئ رابطاً مباشراً لبدء محادثة واتساب بدون الحاجة لحفظ الرقم في جهات الاتصال",
+                lblPhone: "رقم الجوال (مع رمز الدولة بدون أصفار):",
+                placeholderPhone: "966500000000",
+                lblMessage: "رسالة الترحيب الافتراضية (اختياري):",
+                placeholderMsg: "مرحباً، أود الاستفسار عن...",
+                txtGenerate: "توليد الرابط الآن",
+                btnCopy: "نسخ",
+                txtOpen: "فتح في واتساب",
+                toast: "تم نسخ الرابط بنجاح!",
+                alertErr: "الرجاء إدخال رقم جوال صحيح!"
+            },
+            en: {
+                langBtn: "العربية", backBtn: "Home",
+                title: "WhatsApp Direct Link | ToolnestHQ",
+                toolTitle: "WhatsApp Direct Link",
+                toolDesc: "Generate a direct link to start a WhatsApp chat without saving the number",
+                lblPhone: "Phone Number (with Country Code):",
+                placeholderPhone: "12345678900",
+                lblMessage: "Default Message (Optional):",
+                placeholderMsg: "Hello, I would like to ask about...",
+                txtGenerate: "Generate Link Now",
+                btnCopy: "Copy",
+                txtOpen: "Open in WhatsApp",
+                toast: "Link copied successfully!",
+                alertErr: "Please enter a valid phone number!"
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+            document.title = translations[currentLang].title;
+            document.getElementById('langText').textContent = translations[currentLang].langBtn;
+            document.getElementById('backBtn').querySelector('span').textContent = translations[currentLang].backBtn;
+            document.getElementById('toolTitle').textContent = translations[currentLang].toolTitle;
+            document.getElementById('toolDesc').textContent = translations[currentLang].toolDesc;
+            document.getElementById('lblPhone').textContent = translations[currentLang].lblPhone;
+            document.getElementById('whatsappPhone').placeholder = translations[currentLang].placeholderPhone;
+            document.getElementById('lblMessage').textContent = translations[currentLang].lblMessage;
+            document.getElementById('whatsappMsg').placeholder = translations[currentLang].placeholderMsg;
+            document.getElementById('txtGenerate').textContent = translations[currentLang].txtGenerate;
+            document.getElementById('btnCopy').textContent = translations[currentLang].btnCopy;
+            document.getElementById('txtOpen').textContent = translations[currentLang].txtOpen;
+
+            if(currentLang === 'en') {
+                document.getElementById('backBtn').querySelector('svg').style.transform = 'rotate(0deg)';
+            } else {
+                document.getElementById('backBtn').querySelector('svg').style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function generateLink() {
+            let phone = document.getElementById('whatsappPhone').value;
+            let msg = document.getElementById('whatsappMsg').value;
+            
+            // تنظيف الرقم من أي مسافات أو رموز غير الأرقام
+            phone = phone.replace(/[^0-9]/g, '');
+
+            if (!phone) {
+                alert(translations[currentLang].alertErr);
+                return;
+            }
+
+            let finalUrl = `https://wa.me/${phone}`;
+            if (msg.trim() !== '') {
+                finalUrl += `?text=${encodeURIComponent(msg)}`;
+            }
+
+            document.getElementById('finalLink').value = finalUrl;
+            document.getElementById('btnOpenLink').href = finalUrl;
+            document.getElementById('resultArea').style.display = 'flex';
+        }
+
+        function copyLink() {
+            const linkInput = document.getElementById('finalLink');
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999); // للموبايل
+            navigator.clipboard.writeText(linkInput.value).then(() => {
+                const toast = document.getElementById('toastMsg');
+                toast.textContent = translations[currentLang].toast;
+                toast.classList.add('show');
+                setTimeout(() => { toast.classList.remove('show'); }, 2500);
+            });
+        }
+    </script>
+</body>
+</html>
