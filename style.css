@@ -1,0 +1,198 @@
+/* ==========================================================
+‏   ToolNestHQ
+‏   Main Styles
+========================================================== */
+
+‏/* ========== BODY ========== */
+
+‏body{
+‏    background: var(--bg-primary);
+‏    color: var(--text-primary);
+
+‏    font-family: var(--font-en);
+
+‏    overflow-x: hidden;
+
+‏    min-height: 100vh;
+
+‏    position: relative;
+}
+
+‏/* Arabic */
+
+‏html[lang="ar"] body{
+
+‏    font-family: var(--font-ar);
+
+}
+
+‏/* Links */
+
+‏a{
+
+‏    transition: var(--transition-normal);
+
+}
+
+‏/* Buttons */
+
+‏button{
+
+‏    transition: var(--transition-normal);
+
+}
+
+‏/* Images */
+
+‏img{
+
+‏    user-select:none;
+
+‏    -webkit-user-drag:none;
+
+}
+
+‏/* Container */
+
+‏.container{
+
+‏    width:min(92%,var(--container));
+
+‏    margin:auto;
+
+}
+
+/* ==========================================================
+‏   BACKGROUND
+========================================================== */
+
+‏#background{
+
+‏    position:fixed;
+
+‏    inset:0;
+
+‏    background:
+
+‏    radial-gradient(circle at top left,
+‏    rgba(59,130,246,.18),
+‏    transparent 35%),
+
+‏    radial-gradient(circle at bottom right,
+‏    rgba(0,212,255,.12),
+‏    transparent 40%),
+
+‏    linear-gradient(
+‏    180deg,
+    #050816,
+‏    #08101f,
+    #050816
+    );
+
+‏    z-index:-2;
+
+}
+
+/* ==========================================================
+‏   GRID
+========================================================== */
+
+‏.grid{
+
+‏    display:grid;
+
+}
+
+‏.flex{
+
+‏    display:flex;
+
+}
+
+‏.center{
+
+‏    display:flex;
+
+‏    align-items:center;
+
+‏    justify-content:center;
+
+}
+
+/* ==========================================================
+‏   SECTION
+========================================================== */
+
+‏section{
+
+‏    padding:100px 0;
+
+‏    position:relative;
+
+}
+
+/* ==========================================================
+‏   HEADINGS
+========================================================== */
+
+‏h1{
+
+‏    font-size:var(--fs-4xl);
+
+‏    font-weight:var(--fw-black);
+
+‏    line-height:1.1;
+
+}
+
+‏h2{
+
+‏    font-size:var(--fs-3xl);
+
+‏    font-weight:var(--fw-bold);
+
+}
+
+‏h3{
+
+‏    font-size:var(--fs-2xl);
+
+}
+
+‏p{
+
+‏    color:var(--text-secondary);
+
+‏    font-size:var(--fs-md);
+
+}
+
+/* ==========================================================
+‏   SCROLLBAR
+========================================================== */
+
+‏::-webkit-scrollbar{
+
+‏    width:12px;
+
+}
+
+‏::-webkit-scrollbar-track{
+
+‏    background:var(--bg-primary);
+
+}
+
+‏::-webkit-scrollbar-thumb{
+
+‏    background:var(--primary);
+
+‏    border-radius:999px;
+
+}
+
+‏::-webkit-scrollbar-thumb:hover{
+
+‏    background:var(--primary-light);
+
+}
