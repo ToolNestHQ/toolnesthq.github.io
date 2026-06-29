@@ -1,13 +1,87 @@
-<a href="./meta-generator.html" class="tool-card">
-    <div class="icon-wrapper">
-        <i class="fa-solid fa-code"></i>
-    </div>
-    <span class="tool-name">Meta Tags</span>
-</a>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolNestHQ</title>
 
-<a href="./social-share.html" class="tool-card">
-    <div class="icon-wrapper">
-        <i class="fa-solid fa-share-nodes"></i>
-    </div>
-    <span class="tool-name">نشر الموقع</span>
-</a>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #fff;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .tool-card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            background: #334155;
+        }
+
+        .icon-wrapper {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .tool-name {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    ToolNestHQ 🚀
+</header>
+
+<div class="tools-container">
+
+    <a href="./meta-generator.html" class="tool-card">
+        <div class="icon-wrapper">
+            <i class="fa-solid fa-code"></i>
+        </div>
+        <span class="tool-name">Meta Tags</span>
+    </a>
+
+    <a href="./social-share.html" class="tool-card">
+        <div class="icon-wrapper">
+            <i class="fa-solid fa-share-nodes"></i>
+        </div>
+        <span class="tool-name">نشر الموقع</span>
+    </a>
+
+</div>
+
+</body>
+</html>
