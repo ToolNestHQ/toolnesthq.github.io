@@ -200,8 +200,6 @@ Meta Tag Generator | ToolnestHQ
 
 </div>
 
-<script>
-
 function generate(){
 
 let title=document.getElementById("title").value;
@@ -211,6 +209,7 @@ let author=document.getElementById("author").value;
 let url=document.getElementById("url").value;
 let image=document.getElementById("image").value;
 let twitter=document.getElementById("twitter").value;
+
 let meta=`<title>${title}</title>
 
 <meta charset="UTF-8">
@@ -226,34 +225,37 @@ let meta=`<title>${title}</title>
 <meta name="rating" content="General">
 
 <!-- Open Graph -->
-
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_SA">
 <meta property="og:url" content="${url}">
-<!-- Twitter -->
+<meta property="og:image" content="${image}">
 
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
-<meta name="twitter:description" content="${description}">`;
+<meta name="twitter:description" content="${description}">
+<meta name="twitter:image" content="${image}">
+<meta name="twitter:site" content="${twitter}">
+`;
 
 document.getElementById("output").style.display="block";
 document.getElementById("output").textContent=meta;
 
 }
+
 function copyCode(){
 
 const code=document.getElementById("output").textContent;
 
-if(code===""){
+if(!code){
 alert("قم بإنشاء Meta Tags أولاً");
 return;
 }
 
 navigator.clipboard.writeText(code);
-
-alert("✅ تم نسخ الكود");
+alert("تم النسخ 📋");
 
 }
 
@@ -261,19 +263,16 @@ function downloadCode(){
 
 const code=document.getElementById("output").textContent;
 
-if(code===""){
+if(!code){
 alert("قم بإنشاء Meta Tags أولاً");
 return;
 }
 
 const blob=new Blob([code],{type:"text/html"});
-
 const a=document.createElement("a");
 
 a.href=URL.createObjectURL(blob);
-
 a.download="meta-tags.html";
-
 a.click();
 
 }
@@ -284,11 +283,13 @@ document.getElementById("title").value="";
 document.getElementById("description").value="";
 document.getElementById("keywords").value="";
 document.getElementById("author").value="";
+document.getElementById("url").value="";
+document.getElementById("image").value="";
+document.getElementById("twitter").value="";
 document.getElementById("output").textContent="";
 document.getElementById("output").style.display="none";
 
 }
-</script>
 
 </body>
 </html>
