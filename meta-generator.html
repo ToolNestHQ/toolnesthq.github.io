@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Tag Generator | ToolNestHQ</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.container{
+max-width:800px;
+margin:40px auto;
+padding:20px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:none;
+background:#1d1d1d;
+color:white;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+pre{
+background:#111;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+white-space:pre-wrap;
+margin-top:20px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Meta Tag Generator</h1>
+
+<input id="title" placeholder="Website Title">
+
+<textarea id="description" placeholder="Website Description"></textarea>
+
+<input id="keywords" placeholder="Keywords">
+
+<input id="author" placeholder="Author">
+
+<button onclick="generate()">Generate Meta Tags</button>
+
+<pre id="output"></pre>
+
+</div>
+
+<script>
+
+function generate(){
+
+const title=document.getElementById("title").value;
+
+const description=document.getElementById("description").value;
+
+const keywords=document.getElementById("keywords").value;
+
+const author=document.getElementById("author").value;
+
+document.getElementById("output").textContent=`<title>${title}</title>
+
+<meta name="description" content="${description}">
+
+<meta name="keywords" content="${keywords}">
+
+<meta name="author" content="${author}">`;
+
+}
+
+</script>
+
+</body>
+</html>
