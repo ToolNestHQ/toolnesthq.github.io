@@ -230,7 +230,52 @@ document.getElementById("output").style.display="block";
 document.getElementById("output").textContent=meta;
 
 }
+function copyCode(){
 
+const code=document.getElementById("output").textContent;
+
+if(code===""){
+alert("قم بإنشاء Meta Tags أولاً");
+return;
+}
+
+navigator.clipboard.writeText(code);
+
+alert("✅ تم نسخ الكود");
+
+}
+
+function downloadCode(){
+
+const code=document.getElementById("output").textContent;
+
+if(code===""){
+alert("قم بإنشاء Meta Tags أولاً");
+return;
+}
+
+const blob=new Blob([code],{type:"text/html"});
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="meta-tags.html";
+
+a.click();
+
+}
+
+function clearFields(){
+
+document.getElementById("title").value="";
+document.getElementById("description").value="";
+document.getElementById("keywords").value="";
+document.getElementById("author").value="";
+document.getElementById("output").textContent="";
+document.getElementById("output").style.display="none";
+
+}
 </script>
 
 </body>
