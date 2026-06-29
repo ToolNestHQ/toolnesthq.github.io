@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>رابط واتساب - ToolnestHQ</title>
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+    <div class="tool-container">
+        <a href="index.html" class="back-link">العودة للرئيسية</a>
+        <h1><i class="fa-brands fa-whatsapp"></i> رابط واتساب</h1>
+        
+        <input type="text" id="phone" placeholder="أدخل رقم الهاتف (مثال: 9665xxxxxxxx)" style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid #333; background:#111; color:#fff;">
+        <button onclick="createLink()" style="width:100%; padding:12px; background:#a78bfa; border:none; border-radius:10px; cursor:pointer;">إنشاء الرابط</button>
+        
+        <div id="result" style="margin-top:20px; color:#fff;"></div>
+    </div>
+
+    <script>
+        function createLink() {
+            let phone = document.getElementById('phone').value;
+            let url = "https://wa.me/" + phone;
+            document.getElementById('result').innerHTML = "الرابط: <a href='" + url + "' target='_blank' style='color:#a78bfa;'>" + url + "</a>";
+        }
+    </script>
+</body>
+</html>
