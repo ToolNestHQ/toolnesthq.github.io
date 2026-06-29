@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Social Share Tool</title>
+</head>
+
+<body style="font-family: Arial; padding:20px;">
+
+<h2>أداة نشر الموقع 🚀</h2>
+
+<input id="url" placeholder="رابط موقعك" style="width:100%;padding:10px"><br><br>
+<input id="text" placeholder="نص المشاركة" style="width:100%;padding:10px"><br><br>
+
+<button onclick="shareWhatsApp()">واتساب</button>
+<button onclick="shareTwitter()">تويتر</button>
+<button onclick="copyLink()">نسخ الرابط</button>
+
+<script>
+function shareWhatsApp(){
+let url=document.getElementById("url").value;
+let text=document.getElementById("text").value;
+window.open("https://wa.me/?text=" + encodeURIComponent(text + " " + url));
+}
+
+function shareTwitter(){
+let url=document.getElementById("url").value;
+let text=document.getElementById("text").value;
+window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url));
+}
+
+function copyLink(){
+let url=document.getElementById("url").value;
+navigator.clipboard.writeText(url);
+alert("تم النسخ 📋");
+}
+</script>
+
+</body>
+</html>
