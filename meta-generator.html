@@ -170,9 +170,40 @@ Meta Tag Generator | ToolnestHQ
 
 function generate(){
 
-document.getElementById("output").style.display="block";
+let title=document.getElementById("title").value;
+let description=document.getElementById("description").value;
+let keywords=document.getElementById("keywords").value;
+let author=document.getElementById("author").value;
 
-document.getElementById("output").textContent="الجزء الثاني سنضيفه في الخطوة القادمة...";
+let meta=`<title>${title}</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="title" content="${title}">
+<meta name="description" content="${description}">
+<meta name="keywords" content="${keywords}">
+<meta name="author" content="${author}">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Arabic">
+<meta name="revisit-after" content="7 days">
+<meta name="rating" content="General">
+
+<!-- Open Graph -->
+
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+
+<!-- Twitter -->
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${title}">
+<meta name="twitter:description" content="${description}">`;
+
+document.getElementById("output").style.display="block";
+document.getElementById("output").textContent=meta;
 
 }
 
