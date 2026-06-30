@@ -1,53 +1,172 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>ToolnestHQ - العالم الرقمي</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        :root { --p: #7c3aed; --bg: #020617; --card: rgba(255, 255, 255, 0.05); }
-        body { margin: 0; font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; min-height: 100vh; overflow-x: hidden; }
-        
-        .ambient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 50% 50%, #4c1d95 0%, #020617 80%); }
-        
-        .container { width: 95%; max-width: 600px; margin: auto; padding: 40px 0; }
-        h1 { text-align: center; font-size: 2.5rem; margin-bottom: 40px; font-weight: 900; }
-        
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        
-        .card { 
-            background: var(--card); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);
-            padding: 20px 10px; border-radius: 20px; text-decoration: none; color: white;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); text-align: center;
+        :root {
+            --p: #7c3aed;
+            --bg: #020617;
+            --card: rgba(255, 255, 255, 0.05);
         }
-        .card:hover { transform: translateY(-8px); border-color: var(--p); box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3); }
-        
-        .icon { font-size: 1.8rem; color: var(--p); margin-bottom: 10px; transition: 0.3s; }
-        .card:hover .icon { transform: scale(1.2); }
-        
-        .name { font-size: 0.85rem; font-weight: 700; display: block; line-height: 1.3; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Cairo", sans-serif;
+            background: var(--bg);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(circle at center, #4c1d95 0%, #020617 80%);
+        }
+
+        .container {
+            width: 95%;
+            max-width: 600px;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 900;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--card);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 20px;
+            padding: 20px 10px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: .35s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--p);
+            box-shadow: 0 10px 25px rgba(124,58,237,.35);
+        }
+
+        .icon {
+            font-size: 1.8rem;
+            color: var(--p);
+            margin-bottom: 10px;
+        }
+
+        .card:hover .icon {
+            transform: scale(1.15);
+        }
+
+        .name {
+            display: block;
+            font-size: .85rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
     </style>
+
 </head>
+
 <body>
-    <div class="ambient"></div>
-    <div class="container">
-        <h1>Toolnest<span style="color:var(--p)">HQ</span></h1>
-        <main class="grid">
-            <a href="Password.html" class="card"><div class="icon"><i class="fa-solid fa-key"></i></div><span class="name">مولد كلمات السر</span></a>
-            <a href="qr.html" class="card"><div class="icon"><i class="fa-solid fa-qrcode"></i></div><span class="name">صانع الباركود</span></a>
-            <a href="converter.html" class="card"><div class="icon"><i class="fa-solid fa-rotate"></i></div><span class="name">المحول الذكي</span></a>
-            <a href="age.html" class="card"><div class="icon"><i class="fa-solid fa-hourglass-half"></i></div><span class="name">حاسبة العمر</span></a>
-            <a href="whatsapp.html" class="card"><div class="icon"><i class="fa-brands fa-whatsapp"></i></div><span class="name">واتساب سريع</span></a>
-            <a href="text-counter.html" class="card"><div class="icon"><i class="fa-solid fa-file-lines"></i></div><span class="name">مدقق النصوص</span></a>
-            <a href="discount.html" class="card"><div class="icon"><i class="fa-solid fa-calculator"></i></div><span class="name">حاسبة الخصم</span></a>
-            <a href="meta-generator.html" class="card"><div class="icon"><i class="fa-solid fa-code"></i></div><span class="name">Meta Tags</span></a>
-            
-            <a href="compatibility.html" class="card"><div class="icon"><i class="fa-solid fa-gamepad"></i></div><span class="name">مقياس التوافق الغريب</span></a>
-            
-            <a href="social-share.html" class="card"><div class="icon"><i class="fa-solid fa-share-nodes"></i></div><span class="name">نشر الموقع</span></a>
-        </main>
-    </div>
+
+<div class="ambient"></div>
+
+<div class="container">
+
+    <h1>Toolnest<span style="color:var(--p)">HQ</span></h1>
+
+    <main class="grid">
+
+        <a href="Password.html" class="card">
+            <div class="icon"><i class="fa-solid fa-key"></i></div>
+            <span class="name">مولد كلمات السر</span>
+        </a>
+
+        <a href="qr.html" class="card">
+            <div class="icon"><i class="fa-solid fa-qrcode"></i></div>
+            <span class="name">صانع الباركود</span>
+        </a>
+
+        <a href="converter.html" class="card">
+            <div class="icon"><i class="fa-solid fa-rotate"></i></div>
+            <span class="name">المحول الذكي</span>
+        </a>
+
+        <a href="age.html" class="card">
+            <div class="icon"><i class="fa-solid fa-hourglass-half"></i></div>
+            <span class="name">حاسبة العمر</span>
+        </a>
+
+        <a href="whatsapp.html" class="card">
+            <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <span class="name">واتساب سريع</span>
+        </a>
+
+        <a href="text-counter.html" class="card">
+            <div class="icon"><i class="fa-solid fa-file-lines"></i></div>
+            <span class="name">مدقق النصوص</span>
+        </a>
+
+        <a href="discount.html" class="card">
+            <div class="icon"><i class="fa-solid fa-calculator"></i></div>
+            <span class="name">حاسبة الخصم</span>
+        </a>
+
+        <a href="meta-generator.html" class="card">
+            <div class="icon"><i class="fa-solid fa-code"></i></div>
+            <span class="name">Meta Tags</span>
+        </a>
+
+        <a href="compatibility.html" class="card">
+            <div class="icon"><i class="fa-solid fa-gamepad"></i></div>
+            <span class="name">مقياس التوافق الغريب</span>
+        </a>
+
+        <a href="social-share.html" class="card">
+            <div class="icon"><i class="fa-solid fa-share-nodes"></i></div>
+            <span class="name">نشر الموقع</span>
+        </a>
+
+        <a href="zakat.html" class="card">
+            <div class="icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <span class="name">حاسبة الزكاة</span>
+        </a>
+
+    </main>
+
+</div>
+
 </body>
+
 </html>
