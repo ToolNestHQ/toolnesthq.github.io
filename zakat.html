@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ToolNestHQ | Zakat Calculator</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+
+background:#eef3f8;
+color:#1f2937;
+min-height:100vh;
+
+}
+
+header{
+
+background:#0b4f82;
+color:#fff;
+
+padding:18px 22px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+position:sticky;
+top:0;
+z-index:999;
+
+}
+
+.logo{
+
+font-size:23px;
+font-weight:800;
+
+}
+
+.lang-btn{
+
+border:none;
+background:#ffffff20;
+color:white;
+
+padding:10px 18px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.lang-btn:hover{
+
+background:white;
+color:#0b4f82;
+
+}
+
+.container{
+
+width:92%;
+max-width:700px;
+
+margin:auto;
+
+padding:30px 0;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:20px;
+
+padding:25px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+animation:fade .5s;
+
+margin-bottom:20px;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+h1{
+
+font-size:33px;
+margin-bottom:8px;
+
+}
+
+.description{
+
+color:#64748b;
+
+margin-bottom:28px;
+
+line-height:1.8;
+
+}
+
+label{
+
+display:block;
+
+font-weight:700;
+
+margin-bottom:8px;
+
+}
+
+input,select{
+
+width:100%;
+
+padding:16px;
+
+border:2px solid #dbe3ec;
+
+border-radius:14px;
+
+outline:none;
+
+font-size:17px;
+
+margin-bottom:18px;
+
+transition:.25s;
+
+}
+
+input:focus,
+select:focus{
+
+border-color:#0b4f82;
+
+}
+
+button.calculate{
+
+width:100%;
+
+border:none;
+
+padding:17px;
+
+background:#16a34a;
+
+color:white;
+
+font-size:18px;
+
+font-weight:700;
+
+border-radius:14px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button.calculate:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 12px 25px rgba(22,163,74,.35);
+
+}
+
+.result{
+
+display:none;
+
+margin-top:25px;
+
+background:#ecfdf5;
+
+border:2px solid #bbf7d0;
+
+padding:22px;
+
+border-radius:18px;
+
+text-align:center;
+
+}
+
+.result h2{
+
+color:#15803d;
+
+margin-bottom:10px;
+
+}
+
+.amount{
+
+font-size:42px;
+
+font-weight:800;
+
+color:#166534;
+
+margin-top:10px;
+
+}
+
+footer{
+
+text-align:center;
+
+padding:25px;
+
+color:#64748b;
+
+font-size:15px;
+
+}
+
+@media(max-width:600px){
+
+h1{
+
+font-size:26px;
+
+}
+
+.logo{
+
+font-size:18px;
+
+}
+
+.card{
+
+padding:20px;
+
+}
+
+.amount{
+
+font-size:34px;
+
+}
+
+}
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo" id="logo">
+ToolNestHQ
+</div>
+
+<button class="lang-btn" onclick="changeLanguage()" id="langBtn">
+EN
+</button>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h1 id="title">
+حاسبة الزكاة
+</h1>
+
+<p class="description" id="desc">
+احسب مقدار الزكاة المستحقة على أموالك بسهولة.
+</p>
+
+<label id="moneyLabel">
+قيمة المال
+</label>
+
+<input
+type="number"
+id="money"
+placeholder="أدخل قيمة المال">
+
+<label id="typeLabel">
+نوع المال
+</label>
+
+<select id="moneyType">
+
+<option value="cash">
+النقد والأرصدة البنكية
+</option>
+
+<option value="gold">
+الذهب
+</option>
+
+<option value="silver">
+الفضة
+</option>
+
+<option value="business">
+التجارة
+</option>
+
+<option value="investment">
+الاستثمار
+</option>
+
+<option value="other">
+أخرى
+</option>
+
+</select>
+
+<button class="calculate" onclick="calculateZakat()" id="calcBtn">
+
+احسب الزكاة
+
+</button>
+
+<div class="result" id="result">
+
+<h2 id="resultTitle">
+
+الزكاة المستحقة
+
+</h2>
+
+<div class="amount" id="resultValue">
+
+0 ر.س
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 ToolNestHQ
+
+</footer>
+
+<script>
+
+let currentLanguage = "ar";
+
+const texts = {
+
+ar:{
+
+title:"حاسبة الزكاة",
+
+desc:"احسب مقدار الزكاة المستحقة على أموالك بسهولة.",
+
+moneyLabel:"قيمة المال",
+
+moneyPlaceholder:"أدخل قيمة المال",
+
+typeLabel:"نوع المال",
+
+calculate:"احسب الزكاة",
+
+result:"الزكاة المستحقة",
+
+currency:"ر.س",
+
+lang:"EN",
+
+options:[
+"النقد والأرصدة البنكية",
+"الذهب",
+"الفضة",
+"التجارة",
+"الاستثمار",
+"أخرى"
+]
+
+},
+
+en:{
+
+title:"Zakat Calculator",
+
+desc:"Calculate your Zakat easily.",
+
+moneyLabel:"Amount",
+
+moneyPlaceholder:"Enter amount",
+
+typeLabel:"Money Type",
+
+calculate:"Calculate Zakat",
+
+result:"Zakat Due",
+
+currency:"SAR",
+
+lang:"AR",
+
+options:[
+"Cash & Bank",
+"Gold",
+"Silver",
+"Business",
+"Investment",
+"Other"
+]
+
+}
+
+};
+  function changeLanguage(){
+
+currentLanguage = currentLanguage==="ar" ? "en" : "ar";
+
+const t = texts[currentLanguage];
+
+document.documentElement.lang = currentLanguage;
+
+document.documentElement.dir =
+currentLanguage==="ar" ? "rtl" : "ltr";
+
+document.getElementById("title").innerText = t.title;
+
+document.getElementById("desc").innerText = t.desc;
+
+document.getElementById("moneyLabel").innerText = t.moneyLabel;
+
+document.getElementById("typeLabel").innerText = t.typeLabel;
+
+document.getElementById("calcBtn").innerText = t.calculate;
+
+document.getElementById("resultTitle").innerText = t.result;
+
+document.getElementById("langBtn").innerText = t.lang;
+
+document.getElementById("money").placeholder =
+t.moneyPlaceholder;
+
+const options =
+document.querySelectorAll("#moneyType option");
+
+options.forEach((option,index)=>{
+
+option.textContent = t.options[index];
+
+});
+
+localStorage.setItem("toolnest-language",currentLanguage);
+
+}
+
+function calculateZakat(){
+
+const value =
+parseFloat(document.getElementById("money").value);
+
+if(isNaN(value) || value<=0){
+
+alert(
+currentLanguage==="ar"
+?
+"أدخل قيمة صحيحة"
+:
+"Please enter a valid amount"
+);
+
+return;
+
+}
+
+const zakat = value * 0.025;
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("resultValue").innerHTML=
+
+zakat.toLocaleString(
+
+currentLanguage==="ar" ? "ar-SA":"en-US",
+
+{
+
+minimumFractionDigits:2,
+
+maximumFractionDigits:2
+
+}
+
+)
+
++" "+texts[currentLanguage].currency;
+
+}
+
+window.onload=()=>{
+
+const saved=
+
+localStorage.getItem("toolnest-language");
+
+if(saved){
+
+currentLanguage=
+
+saved==="ar" ? "en":"ar";
+
+changeLanguage();
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
